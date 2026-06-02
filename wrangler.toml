@@ -1,12 +1,23 @@
 # Cloudflare Workers config — deploys betterballot.uk as a static site
 # using Workers Static Assets (no server-side code; assets-only Worker).
 #
-# Deploy:   npx wrangler login   (one-time, interactive)
-#           npx wrangler deploy
-# Local:    npx wrangler dev      (serves the assets at http://localhost:8787)
+# Deploy:   bunx wrangler login   (one-time, interactive)
+#           bun run deploy
+# Local:    bun run dev            (serves the assets at http://localhost:8787)
 
 name = "betterballot-uk"
 compatibility_date = "2026-06-01"
+
+# Attach the custom domain. Requires the betterballot.uk zone to be on the
+# same Cloudflare account; wrangler will create the DNS record + certificate.
+# (If this errors on first deploy, comment it out, deploy once, then add the
+#  custom domain in the dashboard under Workers & Pages → your Worker → Domains.)
+# NOTE: this MUST sit above the [assets] table — TOML otherwise treats it as
+# part of [assets] and silently ignores it.
+routes = [
+  { pattern = "betterballot.uk", custom_domain = true },
+  { pattern = "www.betterballot.uk", custom_domain = true }
+]
 
 # Serve the repository root as static assets. Files listed in .assetsignore
 # (the repo's own source-control & tooling files) are not uploaded.
@@ -15,12 +26,17 @@ directory = "."
 # Multi-page static site: just 404 on unknown paths (it's not a SPA).
 html_handling = "auto-trailing-slash"
 not_found_handling = "none"
+[observability]
+enabled = false
+head_sampling_rate = 1
 
-# Attach the custom domain. Requires the betterballot.uk zone to be on the
-# same Cloudflare account; wrangler will create the DNS record + certificate.
-# (If this errors on first deploy, comment it out, deploy once, then add the
-#  custom domain in the dashboard under Workers & Pages → your Worker → Domains.)
-routes = [
-  { pattern = "betterballot.uk", custom_domain = true },
-  { pattern = "www.betterballot.uk", custom_domain = true }
-]
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+persist = true
+invocation_logs = true
+
+[observability.traces]
+enabled = false
+persist = true
+head_sampling_rate = 1

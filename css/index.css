@@ -114,23 +114,29 @@ li{
 	text-align: center;
 }
 .banner .banner-title{
-	color: #777;
-	font-weight: bold;
+	font-family: 'Permanent Marker', 'Comic Sans MS', cursive, sans-serif;
 	line-height: 1.0em;
-	max-width: 900px;
+	max-width: 940px;
 	padding: 0 25px;
 }
 .banner .banner-title .part{
 	display: block;
-	font-size: 24px;
-	letter-spacing: 8px;
-	color: #b9b29a;
-	margin-bottom: 14px;
+	font-size: 26px;
+	letter-spacing: 3px;
+	color: #b3ab92;
+	margin-bottom: 16px;
+}
+.banner .banner-title .part .num{
+	display: inline-block;
+	border: 3px solid #cfc7ad;
+	border-radius: 9px 6px 10px 7px; /* uneven = hand-drawn */
+	padding: 0 9px;
+	margin-left: 6px;
+	transform: rotate(-2deg);
 }
 .banner .banner-title .main{
 	display: block;
-	font-size: 46px;
-	letter-spacing: 1px;
+	font-size: 48px;
 	color: #6f6a59;
 }
 .subtitle{
