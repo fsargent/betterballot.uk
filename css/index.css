@@ -191,23 +191,24 @@ li {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
   pointer-events: none; /* let the mouse reach the animated grid */
 }
 #splash_text h1 {
   margin: 0;
-  font-size: 56px;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-size: 68px;
+  font-weight: 700;
+  letter-spacing: 0;
   color: #4a4a4a;
 }
 #splash_text .splash_sub {
-  margin: 12px 0 0 0;
-  font-size: 30px;
+  margin: 14px 0 0 0;
+  font-size: 35px;
   color: #5a5a5a;
 }
 #splash_text .splash_by {
-  margin: 16px 0 0 0;
-  font-size: 21px;
+  margin: 18px 0 0 0;
+  font-size: 24px;
   color: #888;
 }
 #splash_text .splash_by a {
