@@ -6,82 +6,84 @@ Election/Sandbox design:
 
 ************/
 
-#left, #center, #right{
-	float:left;
-	height: 320px;
+#left,
+#center,
+#right {
+  float: left;
+  height: 320px;
 }
-#left{
-	width:220px;
-	padding-right: 20px;
+#left {
+  width: 220px;
+  padding-right: 20px;
 }
-#center{
-	width:320px;
+#center {
+  width: 320px;
 }
-#right{
-	width:220px;
-	padding-left: 20px;
-	overflow-y: auto;
+#right {
+  width: 220px;
+  padding-left: 20px;
+  overflow-y: auto;
 }
-#caption{
-	text-align: left;
-	font-size: 23px;
-	line-height: 1.0em;
+#caption {
+  text-align: left;
+  font-size: 23px;
+  line-height: 1em;
 }
-#caption .small{
-	font-size: 15px;
-	line-height: 1.0em;
-}
-
-#right img{
-	height: 1em;
-	position: relative;
-	top:2px;
+#caption .small {
+  font-size: 15px;
+  line-height: 1em;
 }
 
-.button-group{
-	overflow: hidden;
-	margin-bottom: 10px;
+#right img {
+  height: 1em;
+  position: relative;
+  top: 2px;
 }
-.button-group-label{
-	font-weight: bold;
-    font-size: 19px;
-    margin-bottom: 5px;
-    line-height: 1.1em;
-}
-.button{
-	float: left;
-	cursor: pointer;
-    background: #bbb;
-    color: #555;
-    font-size: 18px;
-    font-weight: 300;
-    text-align: center;
-    margin-bottom: 5px;
-    padding: 2px 0;
-    
-    position: relative;
-    top:0;
 
-	-webkit-transition: all 0.1s;
-    -moz-transition: all 0.1s;
-    -o-transition: all 0.1s;
-    transition: all 0.1s;
+.button-group {
+  overflow: hidden;
+  margin-bottom: 10px;
 }
-.button:hover{
-	background: #ddd;
+.button-group-label {
+  font-weight: bold;
+  font-size: 19px;
+  margin-bottom: 5px;
+  line-height: 1.1em;
 }
-.button:active{
-	background: #aaa;
+.button {
+  float: left;
+  cursor: pointer;
+  background: #bbb;
+  color: #555;
+  font-size: 18px;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 5px;
+  padding: 2px 0;
+
+  position: relative;
+  top: 0;
+
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  -o-transition: all 0.1s;
+  transition: all 0.1s;
 }
-.button[on=yes]{
-	background: #333;
-	color: #fff;
+.button:hover {
+  background: #ddd;
 }
-.button[on=yes]:hover{
-	background: #555;
+.button:active {
+  background: #aaa;
 }
-.button[on=yes]:active{
-	background: #111;
+.button[on="yes"] {
+  background: #333;
+  color: #fff;
+}
+.button[on="yes"]:hover {
+  background: #555;
+}
+.button[on="yes"]:active {
+  background: #111;
 }
 
 ::-webkit-scrollbar {
@@ -90,43 +92,67 @@ Election/Sandbox design:
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: rgba(0, 0, 0, .5);
-  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
-#ohno{
-	font-size: 2em;
-	position: relative;
-	top:10px;
+#ohno {
+  font-size: 2em;
+  position: relative;
+  top: 10px;
 }
 
 /* Row of seats won, for proportional (multi-winner) methods */
-#caption .seats{
-	margin-top: 12px;
-	padding-top: 10px;
-	border-top: 2px solid #ddd;
-	line-height: 1.6em;
+#caption .seats {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 2px solid #ddd;
+  line-height: 1.6em;
 }
-#caption .seats img{
-	height: 30px;
-	width: 30px;
-	top: 0;
-	margin: 1px;
+#caption .seats img {
+  height: 30px;
+  width: 30px;
+  top: 0;
+  margin: 1px;
 }
-#caption .seats .cdot{
-	width: 22px;
-	height: 22px;
-	margin: 2px;
+#caption .seats .cdot,
+#caption .seats .cicon {
+  width: 26px;
+  height: 26px;
+  margin: 2px;
 }
 
-/* Coloured dot for generated candidates (instead of a hand-drawn icon) */
-.cdot{
-	display: inline-block;
-	width: 0.85em;
-	height: 0.85em;
-	border-radius: 50%;
-	vertical-align: middle;
-	position: relative;
-	top: -1px;
-	box-shadow: inset 0 0 0 1px rgba(0,0,0,0.25);
+/* Proportional seat bar (Party List) */
+#caption .seatbar {
+  display: flex;
+  width: 100%;
+  height: 26px;
+  margin-top: 12px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+#caption .seatbar span {
+  display: block;
+  height: 100%;
+}
+
+/* Coloured dot / SVG shape for generated candidates (instead of a hand-drawn icon) */
+.cdot {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  border-radius: 50%;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+.cicon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
 }
