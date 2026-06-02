@@ -89,11 +89,15 @@ function _candPath(ctx, shape, cx, cy, r) {
 
 // Draw a simple ._. face, nudged down a touch for point-up shapes.
 function _candFace(ctx, shape, cx, cy, r) {
-  var dy = shape === "triangle" ? r * 0.2 : shape === "pentagon" ? r * 0.06 : 0;
-  var col = "rgba(0,0,0,0.55)";
-  var eyeR = Math.max(2, r * 0.1);
-  var eyeY = cy + dy - r * 0.04;
-  var eyeDX = r * 0.3;
+  // Match the characters' faces: small eyes set high (~upper quarter),
+  // and a short mouth about a quarter of the shape's width below them.
+  var dy =
+    shape === "triangle" ? r * 0.22 : shape === "pentagon" ? r * 0.08 : 0;
+  var fcy = cy + dy; // face centre (nudged down on point-up shapes)
+  var col = "rgba(0,0,0,0.6)";
+  var eyeR = Math.max(2, r * 0.11);
+  var eyeY = fcy - r * 0.28; // eyes up in the top portion
+  var eyeDX = r * 0.28;
   ctx.fillStyle = col;
   ctx.beginPath();
   ctx.arc(cx - eyeDX, eyeY, eyeR, 0, Math.TAU);
@@ -101,12 +105,15 @@ function _candFace(ctx, shape, cx, cy, r) {
   ctx.beginPath();
   ctx.arc(cx + eyeDX, eyeY, eyeR, 0, Math.TAU);
   ctx.fill();
+  // mouth: a line ~1/4 of the shape's width (half-width = 0.25 * radius)
+  var mouthHalf = r * 0.25;
+  var mouthY = fcy + r * 0.22;
   ctx.strokeStyle = col;
-  ctx.lineWidth = Math.max(2, r * 0.07);
+  ctx.lineWidth = Math.max(2, r * 0.08);
   ctx.lineCap = "round";
   ctx.beginPath();
-  ctx.moveTo(cx - r * 0.16, eyeY + r * 0.3);
-  ctx.lineTo(cx + r * 0.16, eyeY + r * 0.3);
+  ctx.moveTo(cx - mouthHalf, mouthY);
+  ctx.lineTo(cx + mouthHalf, mouthY);
   ctx.stroke();
 }
 
