@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css/model.css">
-	<link rel="stylesheet" type="text/css" href="css/election.css">
-</head>
-<body>
-	<div id="left"></div>
-	<div id="center"></div>
-	<div id="right"></div>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/model.css" />
+    <link rel="stylesheet" type="text/css" href="css/election.css" />
+  </head>
+  <body>
+    <div id="left"></div>
+    <div id="center"></div>
+    <div id="right"></div>
+  </body>
 </html>
 
 <script src="js/helpers.js"></script>
@@ -26,16 +26,32 @@
 
 <script src="js/main_pr.js"></script>
 <script>
-main({
+  main({
+    system: "Single Transferable Vote",
+    hideSystem: true,
+    seats: 5,
 
-	system: "Single Transferable Vote",
-	hideSystem: true,
-	seats: 5,
+    // A subtly UK-shaped map: a tight authoritarian-right trio (vote-splitting),
+    // a centrist, and a looser libertarian-left group.
+    candidates: 9,
+    candidatePositions: [
+      [205, 80],
+      [238, 98],
+      [212, 120], // right cluster
+      [158, 150],
+      [142, 172], // centre / centre-left
+      [122, 190],
+      [96, 214],
+      [80, 168],
+      [134, 206], // left cluster
+    ],
 
-	candidates: 9,
-
-	voters: 1,
-	voterPositions: [[150,150]]
-
-});
+    // Three voter blocs: centre-left, right, left.
+    voters: 3,
+    voterPositions: [
+      [140, 165],
+      [212, 108],
+      [100, 200],
+    ],
+  });
 </script>

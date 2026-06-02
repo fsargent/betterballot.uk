@@ -102,11 +102,11 @@ Election/Sandbox design:
   top: 10px;
 }
 
-/* Row of seats won, for proportional (multi-winner) methods */
+/* Row of seats won (results), shown above the round-by-round count */
 #caption .seats {
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 2px solid #ddd;
+  margin: 6px 0 12px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #ddd;
   line-height: 1.6em;
 }
 #caption .seats img {

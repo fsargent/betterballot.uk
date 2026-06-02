@@ -323,10 +323,13 @@ Election.partylist = function (model, options) {
   var tally = result.tally;
   var seatsWon = result.seatsWon;
 
+  // A handful of seats is a single constituency; a whole chamber is a parliament.
+  var place = seats >= 50 ? "parliament" : "constituency";
+
   var text = "";
   text += "<span class='small'>";
   text += "<b>seats shared out in proportion to each party's votes</b><br>";
-  text += "(a " + seats + "-seat parliament)<br><br>";
+  text += "(a " + seats + "-seat " + place + ")<br><br>";
   for (var i = 0; i < model.candidates.length; i++) {
     var c = model.candidates[i].id;
     text +=
@@ -356,8 +359,13 @@ Election.spav = function (model, options) {
     seats,
   );
   var elected = result.elected;
-  var text = "<span class='small'>";
 
+  // Results first...
+  var text = "<b>elected:</b>";
+  text += _seatRow(elected);
+
+  // ...then the round-by-round count below.
+  text += "<span class='small'>";
   for (var s = 0; s < result.rounds.length; s++) {
     var round = result.rounds[s];
     text +=
@@ -371,7 +379,6 @@ Election.spav = function (model, options) {
   }
 
   text += "</span>";
-  text += _seatRow(elected);
   model.caption.innerHTML = text;
 };
 
@@ -391,7 +398,12 @@ Election.stv = function (model, options) {
   var quota = result.quota;
   var elected = result.elected;
 
-  var text = "<span class='small'>";
+  // Results first...
+  var text = "<b>elected:</b>";
+  text += _seatRow(elected);
+
+  // ...then the round-by-round count below.
+  text += "<span class='small'>";
   text += "<b>quota to win a seat: " + quota + "</b><br><br>";
 
   for (var i = 0; i < result.rounds.length; i++) {
@@ -412,6 +424,5 @@ Election.stv = function (model, options) {
   }
 
   text += "</span>";
-  text += _seatRow(elected);
   model.caption.innerHTML = text;
 };

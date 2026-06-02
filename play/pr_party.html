@@ -34,8 +34,22 @@
 
     candidates: 5, // i.e. parties
     candidateLabel: "how many parties?",
+    // A subtly UK-shaped map: two right parties close together, a centrist,
+    // and two on the left.
+    candidatePositions: [
+      [210, 92],
+      [240, 110],
+      [158, 150],
+      [118, 188],
+      [95, 212],
+    ],
 
-    voters: 1,
-    voterPositions: [[150, 150]],
+    // Three voter blocs: centre-left, right, left.
+    voters: 3,
+    voterPositions: [
+      [140, 165],
+      [212, 108],
+      [100, 200],
+    ],
   });
 </script>
