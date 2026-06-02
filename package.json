@@ -1,0 +1,15 @@
+{
+  "name": "betterballot-uk",
+  "version": "1.0.0",
+  "description": "To Build a Better Ballot — UK: an interactive guide to fairer voting & proportional representation. A public-domain remix of Nicky Case's original.",
+  "private": true,
+  "license": "CC0-1.0",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}

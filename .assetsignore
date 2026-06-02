@@ -1,0 +1,19 @@
+# Files NOT to upload as part of the static site (Cloudflare Workers Static Assets).
+# gitignore-style patterns, relative to the assets directory (repo root).
+
+.git
+.gitignore
+.assetsignore
+wrangler.toml
+package.json
+package-lock.json
+node_modules
+
+# Repo tooling / docs (not part of the website)
+.claude
+.agents
+*.md
+
+# Separate embedded project and leftover empty dir
+voter
+site

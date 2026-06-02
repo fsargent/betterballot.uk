@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+
+	<!-- Meta -->
+	<title>To Build a Better Ballot — UK</title>
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<meta charset="utf-8">
+	<link rel="icon" type="image/png" href="favicon.png">
+	<meta name="viewport" content="width=1000">
+
+	<!-- Schema.org -->
+	<meta itemprop="name" content="To Build a Better Ballot — UK">
+	<meta itemprop="description" content="an interactive guide to fairer voting & proportional representation in the UK">
+	<meta itemprop="image" content="https://betterballot.uk/social/thumbnail.png">
+
+	<!-- Twitter Card data -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="To Build a Better Ballot — UK">
+	<meta name="twitter:description" content="an interactive guide to fairer voting & proportional representation in the UK">
+	<meta name="twitter:image" content="https://betterballot.uk/social/thumbnail.png">
+
+	<!-- Open Graph data -->
+	<meta property="og:title" content="To Build a Better Ballot — UK">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://betterballot.uk/">
+	<meta property="og:image" content="https://betterballot.uk/social/thumbnail.png">
+	<meta property="og:description" content="an interactive guide to fairer voting & proportional representation in the UK">
+
+	<!-- Styles -->
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<base target="_blank">
+
+</head>
+<body>
+
+<!-- - - - - - - - -  SPLASH!  - - - - - - - - - -->
+
+<div id="splash" class="banner">
+	<iframe id="splash_iframe" src="splash/splash.html" width="1500" height="400" scrolling="no"></iframe>
+	<img src="img/logo.png"/>
+</div>
+
+<div id="content">
+
+<!-- - - - - - - - -
+INTRODUCTION: THE SPOILER EFFECT
+- - - - - - - - - -->
+
+<p class="subtitle">an interactive guide to fairer voting in the UK</p>
+
+<div class="words" id="intro">
+
+	<p>
+		<i>(<b>NOTE:</b> This is a British remix of Nicky Case's lovely
+		<a href="https://ncase.me/ballot/">&ldquo;To Build a Better Ballot&rdquo;</a> (2016),
+		which is public domain. Nicky did the hard part &mdash; the art, the code, the wisdom.
+		I've just swapped in UK examples, added <b>proportional representation</b>,
+		and updated things for 2026. Enormous thanks, Nicky. &lt;3)</i>
+	</p>
+
+	<hr>
+
+	<p>This is not really about the last election. Not <em>just</em> that, anyway.</p>
+
+	<p>First, I need to explain a weird glitch in how we vote.
+	Let's say there's two candidates, Steven Square <img src="play/img/square.png"/> and Tracy Triangle <img src="play/img/triangle.png"/>, on a couple of political axes. (for example, &ldquo;left vs. right&rdquo; and &ldquo;more state vs. less state&rdquo;) Let's also say there's a voter <img src="play/img/voter.png"/> who simply votes for whoever's political position is closest. What would that look like?</p>
+
+</div>
+<div class="sim-intro" id="click-drag-candidates-voter">
+
+	<p class="caption" style="margin-top:30px">
+		<b><span style="font-size:2.5em;">click &amp; drag</span><br>the candidates and the voter:</b>
+	</p>
+	<iframe src="play/model1.html" width="305" height="360" scrolling="no"></iframe>
+
+</div>
+<div class="words">
+
+	<p>It's a tough choice. Triangle's got some sharp points, but Square understands more sides! Alas, on a UK ballot paper, you can only put your <b>X</b> next to one name.</p>
+
+	<p>Of course, there's more than one voter in a constituency. Let's simulate what an election looks like with 100+ voters.</p>
+
+</div>
+<div class="sim-intro" id="drag-candidates-voters">
+
+	<p class="caption">
+		<b>drag the candidates &amp; voter<span class="underline">s</span> around.<br>(to move voters, drag the <em>middle</em> of the crowd)<br>watch how that changes the election:</b>
+	</p>
+	<iframe src="play/model2.html" width="320" height="400" scrolling="no"></iframe>
+
+</div>
+<div class="words">
+
+	<p>Now let's consider a different election. Say Tracy Triangle is <em>already</em> winning, and a third candidate, Henry Hexagon <img src="play/img/hexagon.png"/>, turns up. (Hexagon's supporters like how he tackles problems from more angles.) Hexagon takes a political position close to Triangle's &mdash; they're fishing in the same pond.</p>
+
+	<p>Now, you'd think giving voters <em>more</em> of what they want shouldn't make things <em>worse</em>, right? Well...</p>
+
+</div>
+<div class="sim-intro" id="triangle-vs-square">
+
+	<p class="caption">
+		<b>
+		at first, <img src="play/img/triangle.png"> beats <img src="play/img/square.png">.<br>
+		drag <img src="play/img/hexagon.png"> to <i>just under</i> <img src="play/img/triangle.png">,<br>
+		and see what happens:</b>
+	</p>
+	<iframe src="play/model3.html" width="320" height="460" scrolling="no"></iframe>
+
+</div>
+<div class="words">
+
+	<p>That's right. Steven Square, our <em>least</em> popular candidate, now wins! When two similar candidates stand, they &ldquo;split the vote&rdquo; between them, and a third candidate most people <em>didn't</em> want sneaks through the middle.</p>
+
+	<p>This is called <strong>the spoiler effect</strong>, and in Britain it is the everyday weather of politics. On the right, Conservative <img src="play/img/square.png"> and Reform <img src="play/img/triangle.png"> can split a seat between them. On the left, Labour, the Liberal Democrats and the Greens can split one too. Whichever &ldquo;side&rdquo; you're on, the system can punish you for having <em>more than one</em> party you like.</p>
+
+	<p>Which is why so many Britons &ldquo;vote tactically&rdquo; &mdash; not for their actual favourite, but for the least-bad candidate who can realistically win their seat. There are whole websites devoted to telling you how to hold your nose. We even have a phrase for it: the <b>&ldquo;wasted vote.&rdquo;</b></p>
+
+	<p>But this is <em>not</em> about any single party.</p>
+
+	<p><strong>This is about designing a democracy that people can <em>trust</em>.</strong></p>
+
+	<p>Turnout at the 2024 general election was under 60% &mdash; one of the lowest since universal suffrage. Millions live in &ldquo;safe seats&rdquo; that haven't changed hands in living memory, where a vote for anyone else feels pointless. Trust in politics, by the government's own surveys, is at a record low. That's bigger than any one ballot paper &mdash; but the ballot paper is a good place to start.</p>
+
+	<p>Fixing it won't be as daunting as fixing party funding, or the Lords, or anything else. It mostly requires changing <em>a piece of paper</em> &mdash; and how we count those pieces of paper.</p>
+
+	<p><strong>Let's talk about how to build a better ballot.</strong></p>
+
+</div>
+
+<!-- - - - - - - - -
+PART I: THE ALTERNATIVE BALLOTS
+- - - - - - - - - -->
+
+<div class="banner">
+	<img src="img/part1.png"/>
+</div>
+<div class="words" id="the-alternative-ballots">
+
+	<p>Now, some of you may have a couple of objections!</p>
+
+	<p>
+	First objection: why would the people in power change the system that <em>got</em> them there? Well, the spoiler effect has bitten <em>every</em> big party at some point &mdash; ask the Conservatives about Reform, or Labour about the SNP. Getting rid of the glitch could be a win for major <em>and</em> minor parties. And reform isn't unthinkable here: in 2011 the UK actually held a national referendum on changing how we vote. (More on that in a moment.)
+	</p>
+
+	<p>Second objection: didn't some clever clogs prove that <em>all</em> voting systems are unfair? You're thinking of <a href="https://en.wikipedia.org/wiki/Arrow%27s_impossibility_theorem">Arrow's Impossibility Theorem</a> &mdash; but two answers: 1) some systems are still <em>fairer</em> than others, even if none are perfect; and 2) Arrow's proof only applies to systems where you <em>rank</em> candidates. We'll meet systems where you don't rank at all.</p>
+
+	<p>But first, let's look at the system we actually use:</p>
+
+</div>
+<div class="sim-ballot" id="fptp">
+
+	<h2 class="ballot_title" style="margin-bottom: 0.2em;">FIRST PAST THE POST (&ldquo;CHOOSE ONE&rdquo;)</h2>
+	<p class="ballot_caption">same as before. click &amp; drag<br>the candidates and voter</p>
+
+	<iframe src="play/ballot1.html" width="655" height="256" scrolling="no"></iframe>
+</div>
+<div class="words">
+
+	<p><strong>How to count:</strong> Add up the votes. Whoever gets the most, wins. This is what we use for the House of Commons and English council elections.</p>
+
+	<p>Simple &mdash; but, as you saw, it leads to the spoiler glitch, and pushes people into voting for the lesser of two evils. And ask yourself: <b>how can we expect our politicians to be honest with us, when our voting system won't let us be honest with <em>it</em>?</b></p>
+
+	<p>So, to fix the spoiler effect, people have suggested alternatives. Such as...</p>
+</div>
+<div class="sim-ballot" id="av">
+
+	<h2 class="ballot_title" style="margin-bottom: 0.15em;">THE ALTERNATIVE VOTE (RANK THEM)</h2>
+	<p class="ballot_caption">again, click &amp; drag</p>
+
+	<iframe src="play/ballot2.html" width="655" height="256" scrolling="no"></iframe>
+
+</div>
+<div class="words">
+
+	<p><strong>How to count:</strong> Instead of one X, you rank the candidates: 1st, 2nd, 3rd. Then:</p>
+
+	<ol>
+	<li>Count everyone's 1st choices.</li>
+	<li>If someone has more than 50%, they win! END.</li>
+	<li>If not, eliminate the last-place candidate.</li>
+	<li>Their ballots transfer to those voters' next choice.</li>
+	<li>Repeat until someone has more than 50%.</li>
+	</ol>
+
+	<p>
+	This is <em>the</em> most famous alternative to First Past the Post. Australia uses it for its lower house; the Republic of Ireland uses it for the presidency. British parties already use it to elect their <em>own</em> leaders. And in <b>2011, the UK held a referendum</b> on switching the Commons to the Alternative Vote &mdash; which was <a href="https://en.wikipedia.org/wiki/2011_United_Kingdom_Alternative_Vote_referendum">rejected, roughly 68% to 32%</a>.
+	</p>
+
+	<p>(One system, several names: what Britain calls the &ldquo;Alternative Vote&rdquo; is the <em>exact same thing</em> Americans call &ldquo;Ranked-Choice Voting&rdquo; and mathematicians call &ldquo;Instant-Runoff Voting&rdquo;. Same ballot, same count &mdash; just different labels.)</p>
+
+	<p>The Alternative Vote kills the classic spoiler effect &mdash; but, as we'll see, it has a glitch of its own. So people have looked at systems where you don't rank at all:</p>
+
+</div>
+<div class="sim-ballot" id="approval">
+
+	<h2 class="ballot_title" style="margin-bottom: 0.15em;">APPROVAL VOTING (&ldquo;CHOOSE MANY&rdquo;)</h2>
+	<p class="ballot_caption">yup, stiiiiill click &amp; drag</p>
+
+	<iframe src="play/ballot3.html" width="655" height="256" scrolling="no"></iframe>
+
+</div>
+<div class="words">
+
+	<p><strong>How to count:</strong> Tick <em>every</em> candidate you'd be happy with &mdash; as many as you like. Add up the ticks. Most ticks wins.</p>
+
+	<p><em>Wait, picking more than one? Doesn't that break one-person-one-vote?</em> Not really &mdash; your vote was never a single X, it was always <em>the whole ballot paper</em>. Here you simply get to say which candidates you approve of, instead of guessing which one is &ldquo;electable&rdquo;. Best of all: it'd work with the exact same ballot boxes and pencils-on-strings we already have. The only change is the instruction at the top, from &ldquo;vote for one&rdquo; to &ldquo;vote for as many as you like&rdquo;.</p>
+
+	<p>So that's our shortlist: the system we use, plus two alternatives. But how can we tell if they're actually <em>better</em>? What glitches might <em>they</em> have? Let's simulate them.</p>
+
+</div>
+
+<!-- - - - - - - - -
+PART II: HOW DO THE ALTERNATIVES HOLD UP?
+- - - - - - - - - -->
+
+<div class="banner">
+	<img src="img/part2.png"/>
+</div>
+<div class="words" id="how-are-the-alternatives">
+	<p>Remember that spoiler simulation from earlier? Here it is again &mdash; but now you can switch between the three voting systems. See how each one copes with a potential spoiler:</p>
+</div>
+<div class="sim-test">
+	<p class="caption-test">
+	drag <img src="play/img/hexagon.png"> to <em>just under</em> <img src="play/img/triangle.png"> to create a spoiler.<br>
+	then compare the three voting systems:
+	<br>
+	<span style="font-weight:bold; font-size:0.8em">
+	(note: in the rare case of a tie, a winner is picked at random)
+	</span>
+	</p>
+
+	<iframe src="play/election1.html" width="800" height="380" scrolling="no"></iframe>
+</div>
+<div class="words">
+
+	<p>As you can see, both alternatives shrug off the spoiler that breaks First Past the Post. So &mdash; job done? Just pick one and go home?</p>
+
+	<p>Alas, no. In curing one glitch, the Alternative Vote picks up another. Below, Tracy Triangle <img src="play/img/triangle.png"/> is already winning &mdash; and you're going to make her <em>even more</em> popular by dragging voters towards her. Obviously, becoming more popular can't make a winner <em>lose</em>... right?</p>
+
+	<p>You can probably guess where this is going...</p>
+</div>
+<div class="sim-test" id="drag-voters-towards">
+
+	<p class="caption-test">
+	drag the voters <img src="play/img/voters.png"> <em>slowly</em> up towards <img src="play/img/triangle.png">:
+	</p>
+
+	<iframe src="play/election2.html" width="800" height="380" scrolling="no"></iframe>
+
+</div>
+<div class="words">
+
+	<p>What happened?
+	Originally <img src="play/img/hexagon.png"/> is knocked out first, so <img src="play/img/triangle.png"/> faces a weaker <img src="play/img/square.png"/> and wins.
+	But once you move voters closer to <img src="play/img/triangle.png"/>, the <em>order of elimination</em> changes: now <img src="play/img/square.png"/> is knocked out first, so <img src="play/img/triangle.png"/> faces a <em>stronger</em> <img src="play/img/hexagon.png"/> &mdash; and <em>loses</em>.</p>
+
+	<p>Under the Alternative Vote, a winning candidate can lose <em>by becoming more popular</em>. Mathematicians call this a failure of &ldquo;monotonicity&rdquo;, and <a href="http://www.rangevoting.org/Monotone.html">estimate it could happen in a meaningful chunk of competitive elections</a>. It's also hard to audit, because councils rarely publish enough detail to re-run the count. Not ideal, in an age when trust is the whole point.</p>
+
+	<p>So every single-winner method has its trade-offs. But here's the thing that matters most for Britain &mdash; and it's easy to miss:</p>
+
+	<p><strong>Every system so far elects just <em>one</em> winner per seat.</strong> They argue about <em>how</em> to crown that single MP. But even a &ldquo;perfect&rdquo; way of picking one winner per constituency does nothing about the <em>real</em> British problem...</p>
+
+	<p>...which is what happens when you add up 650 separate little elections.</p>
+
+	<p>At the 2024 general election, Labour won about <b>a third of the votes</b> &mdash; and nearly <b>two-thirds of the seats</b>. Reform UK won more than 4 million votes (~14%) and got <b>5 seats</b>. The Greens won nearly a million votes and got <b>4</b>. The Liberal Democrats won fewer votes than Reform, but &mdash; because their support was geographically concentrated &mdash; won <b>72 seats</b>. The same had happened in reverse before: in 2015 the SNP swept Scotland on a fraction of the UK vote, while UKIP's 3.8 million votes returned a single MP.</p>
+
+	<p>This isn't a complaint about any one party &mdash; the distortion lands on the right one decade and the left the next. It's a property of the <em>system</em>: First Past the Post rewards votes that are <em>concentrated</em> and throws away votes that are <em>spread out</em>. No amount of cleverness in counting a single seat can fix that.</p>
+
+	<p>To make seats match votes, you need a fundamentally different idea. You need <strong>proportional representation</strong>.</p>
+
+</div>
+
+<!-- - - - - - - - -
+PART III: PROPORTIONAL REPRESENTATION
+- - - - - - - - - -->
+
+<div class="banner text-banner">
+	<div class="banner-title">
+		<span class="part">PART 3</span>
+		<span class="main">PROPORTIONAL REPRESENTATION</span>
+	</div>
+</div>
+<div class="words" id="proportional">
+
+	<p>Here's the key move. Instead of carving the country into 650 tiny areas that each elect <em>one</em> MP, you draw <em>bigger</em> areas that each elect <em>several</em> MPs together. Then you share out those seats so the mix of winners reflects the mix of voters.</p>
+
+	<p>If a region is 40% one way and 30% another and 30% a third way, a proportional system returns roughly 40 / 30 / 30 worth of representatives &mdash; instead of one side taking <em>everything</em>.</p>
+
+	<p>This is not exotic, foreign or untested. The UK <em>already</em> votes proportionally for the <b>Scottish Parliament</b>, the <b>Senedd</b> (Welsh Parliament), the <b>Northern Ireland Assembly</b>, <b>Scottish councils</b>, and the <b>London Assembly</b>. Only Westminster and English councils still cling to choose-one.</p>
+
+	<p>And here's the lovely part: <strong>each of the three ballots you just met has a proportional big sibling.</strong> Same ballot paper in your hand &mdash; you just fill several seats at once, and share them out fairly. Let's take them in turn.</p>
+
+</div>
+<div class="words">
+
+	<p><b>1. Choose one &rarr; Party List.</b> Take the simplest ballot &mdash; one X for one party &mdash; and instead of giving the whole area to the single biggest party, hand out the seats <em>in proportion</em> to the votes. Win a third of the votes, win about a third of the seats. That's it.</p>
+
+</div>
+<div class="sim-test" id="pr-party">
+	<h2 class="ballot_title" style="text-align:center; left:0;">PARTY LIST</h2>
+	<p class="caption">drag the parties &amp; voters around, and change the number of seats.<br>watch the seats split up <em>in proportion</em>:</p>
+	<iframe src="play/pr_party.html" width="800" height="430" scrolling="no"></iframe>
+</div>
+<div class="words">
+
+	<p>You may have voted this way already: <b>Great Britain used a party-list system for European Parliament elections</b> from 1999 to 2019. And from the <b>2026 election the Senedd switches to a fully proportional party-list system</b> &mdash; 96 members, six per area. The one catch with a <em>closed</em> list is that the <em>party</em> ranks its own candidates, so you trust the party with who actually gets in. Which is exactly what the next method fixes...</p>
+
+</div>
+<div class="words">
+
+	<p><b>2. Rank them &rarr; Single Transferable Vote.</b> Take the ranked ballot from the Alternative Vote, but now several seats are up for grabs. A candidate wins as soon as they reach a <b>quota</b> &mdash; the fair share of votes needed for one seat. The clever bit: if your favourite gets <em>more</em> votes than they need, the <em>surplus</em> flows to your next choice; and if your favourite has no hope, your vote flows on too. Your vote keeps looking for somewhere useful to land, so hardly any is wasted.</p>
+
+</div>
+<div class="sim-test" id="pr-stv">
+	<h2 class="ballot_title" style="text-align:center; left:0;">SINGLE TRANSFERABLE VOTE</h2>
+	<p class="caption">again: drag things around and change the seats.<br>the caption shows the quota, and who's elected:</p>
+	<iframe src="play/pr_stv.html" width="800" height="430" scrolling="no"></iframe>
+</div>
+<div class="words">
+
+	<p>This is the proportional system Britain knows best: it elects the <b>Northern Ireland Assembly</b>, every one of <b>Scotland's councils</b>, and the D&aacute;il in the <b>Republic of Ireland</b>. Because you rank <em>people</em> rather than just parties, you can back a party <em>and</em> pick which of its candidates you actually rate &mdash; or rank across party lines entirely. (You'll often see it abbreviated &ldquo;STV&rdquo;.)</p>
+
+	<p>The counting &mdash; quotas, surpluses and transfers &mdash; has a lot of moving parts. If you really want to get into the nitty-gritty, <a href="https://howtofixtheelection.com/ballot/stv/">this superb deep-dive on the Single Transferable Vote</a> walks through it step by step.</p>
+
+</div>
+<div class="words">
+
+	<p><b>3. Choose many &rarr; Proportional Choose Many.</b> Take the approval ballot &mdash; tick everyone you'd be happy with &mdash; and fill the seats one at a time. Elect the most-ticked candidate, then <em>turn down the volume</em> on every ballot that already helped elect someone, so the same bloc can't grab every seat in a row. Smaller groups get their fair turn. (The formal name is <em>Proportional Approval Voting</em>; it's the proportional cousin of choose-many.)</p>
+
+</div>
+<div class="sim-test" id="pr-choosemany">
+	<h2 class="ballot_title" style="text-align:center; left:0;">PROPORTIONAL CHOOSE MANY</h2>
+	<p class="caption">same easy tick-box ballot &mdash; but now it fills several seats,<br>and shares them out so every group is heard:</p>
+	<iframe src="play/pr_choosemany.html" width="800" height="430" scrolling="no"></iframe>
+</div>
+<div class="words">
+
+	<p>It's the simplest of the three to vote in &mdash; the ballot is just ticks &mdash; and it needs no parties at all, which makes it a favourite of voting-reform nerds. It isn't yet used for big public elections, but it shows how little you have to change the <em>ballot</em> to get a proportional <em>result</em>.</p>
+
+	<p>Want to put all three side by side? Here they are on one playground &mdash; switch between them and watch the same voters produce three (often similar!) proportional parliaments:</p>
+
+</div>
+<div class="sim-test" id="pr-compare">
+	<p class="caption-test">
+	switch between <b>Party List</b>, <b>Single Transferable Vote</b><br>
+	and <b>Proportional Choose Many</b>, and change the seats:
+	</p>
+	<iframe src="play/election_pr.html" width="800" height="490" scrolling="no"></iframe>
+</div>
+<div class="words">
+
+	<p>None of these is a free lunch, and it's only fair to say so. Proportional parliaments tend to mean <b>coalitions</b> and compromise rather than one party steamrolling everything &mdash; grown-up consensus or backroom horse-trading, depending on your mood. Closed party lists hand power to the parties; transferable-vote counts take longer. The honest pitch isn't &ldquo;proportional representation is perfect.&rdquo; It's that it keeps a promise the current system simply can't: <b>if a third of people vote for something, they get about a third of the seats.</b></p>
+
+</div>
+
+<!-- - - - - - - - -
+CONCLUSION: OPEN LETTER
+- - - - - - - - - -->
+
+<div class="banner">
+	<img src="img/part3.png"/>
+</div>
+<div class="words" id="open-letter">
+
+	<p><em>ahem</em></p>
+
+	<p style="text-align:center">
+		<strong style="font-size:1.4em">DEAR EVERYONE IN BRITAIN<br>WHO WANTS THEIR VOTE TO COUNT</strong>
+	</p>
+
+	<p>Thank you for getting this far! We've known for a long time that First Past the Post forces voters to be dishonest, manufactures a &ldquo;lesser of two evils&rdquo; choice, leaves millions stranded in safe seats, and hands out majorities that the vote totals never justified.</p>
+
+	<p>
+	If the only choice on the table is First Past the Post versus the Alternative Vote &mdash; the 2011 question &mdash; then sure, the Alternative Vote is a small step up. But Britain already said no to it once, and it's <em>still</em> a single-winner system: it tidies up one constituency while leaving the national mismatch between votes and seats completely intact.
+	</p>
+
+	<p>
+	<b>The bigger prize is proportionality.</b> And we don't have to imagine it &mdash; Scotland, Wales and Northern Ireland already vote proportionally, and the sky has stayed up. Personally, I lean towards <b>Proportional Choose Many</b> (proportional approval): it carries none of the complexity, or the baggage, of the Alternative Vote the country already rejected &mdash; the ballot is just ticks. But honestly, <em>which</em> proportional system we pick matters far less than people think: <b>they're all proportional, so every one of them is dramatically fairer than what we have now.</b> Choose whichever you like best, and let's get on with it.
+	</p>
+
+	<p>
+	And where we <em>do</em> keep single-winner contests &mdash; by-elections, mayors, police commissioners, the odd lone council seat &mdash; we should switch them to plain <b>Choose Many</b> approval voting: fair, competitive, spoiler-proof, and (since the country already turned down <em>ranking</em>) about as gentle a change as a ballot paper can take. Better still, it keeps both ballots consistent: tick the candidates you like to fill one seat, tick the candidates you like to fill several. One simple habit, every election.
+	</p>
+
+	<p>I won't pretend to know <em>the</em> One True System &mdash; partly because the social-choice nerds will descend on me if I do, and partly because we genuinely learn most by <em>trying</em> things. All the more reason for councils, mayors and devolved nations to keep experimenting.</p>
+
+	<p>Because keeping that discussion going is what democracy <em>is</em>. Support for democracy itself has wobbled across the West, and ours is no exception. There's no One Weird Trick to fix that. But showing people that the system will actually respond to them &mdash; that a vote, any vote, finally <em>counts</em> &mdash; is a pretty good place to start.</p>
+
+	<p>Because this isn't really about building a better ballot.</p>
+
+	<p>It's about building a better <em>democracy</em>.</p>
+
+	<p><strong>&lt;3,</strong><br>
+	<b>~ <a href="https://felixsargent.com">Felix Sargent</a>, June 2026</b></p>
+
+	<hr>
+
+	<p><strong>P.S:</strong> Since you played all the way through, here's a bonus: a full &ldquo;Sandbox Mode&rdquo; with <em>every</em> method in this piece &mdash; single-winner <em>and</em> proportional &mdash; up to 13 candidates, and a save-and-share link. Have a tinker!</p>
+</div>
+
+
+<!-- - - - - - - - -
+SANDBOX
+- - - - - - - - - -->
+
+<div id="sandbox">
+	<div class="sim-sandbox">
+		<h1 class="caption-test" style="margin: 30px 0 15px 0;">SANDBOX MODE! <a href="sandbox">(link to <em>just</em> this)</a></h1>
+		<iframe src="sandbox/sandbox.html" width="802" height="700" scrolling="no"></iframe>
+	</div>
+	<div class="words">
+		<p>
+		Pick <em>any</em> method &mdash; the single-winner ones (First Past the Post / choose-one, the Alternative Vote, choose-many)
+		<em>or</em> the proportional ones (Party List, the Single Transferable Vote, Proportional Choose Many) &mdash;
+		add candidates, drag voters into clusters, change the number of seats, and watch what each system does.
+		Hit <b>save</b> for a link you can share.
+		</p>
+	</div>
+</div>
+
+<!-- - - - - - - - -
+THE END: Credits & Thanks
+- - - - - - - - - -->
+
+<div id="end">
+	<div id="credits">
+
+		<!-- Public Domain -->
+		<div id="uncopyright">
+			<img src="img/public_domain.png" width="180">
+			<div style="float:right; width:750px; font-size:20px; color:#999;">
+				<div style="font-size:91px; height:97px; color:#fff; position: relative; left: -5px; line-height: 1em;"><b>PUBLIC DOMAIN</b></div>
+				<a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank">Zero rights reserved.</a>
+				Like the original, this remix is free for everyone &mdash;
+				teachers, mathematicians, hobbyists, campaigners, and policy wonks.
+				Use it, copy it, rip it apart, make it better.
+			</div>
+		</div>
+
+		<div id="appendix_container">
+
+			<div id="further_reading">
+
+				<div class="appendix_title" style="font-size:46px; line-height:50px">
+				WITH ENORMOUS THANKS TO<br>NICKY CASE</div>
+
+				<p>
+				This entire thing &mdash; the words, the art, the playful little draggable voters,
+				the whole &ldquo;explorable explanation&rdquo; format &mdash; is built on
+				<a href="https://ncase.me/ballot/">Nicky Case's &ldquo;To Build a Better Ballot&rdquo; (2016)</a>.
+				Nicky released it into the public domain so that people exactly like us could remix it for our own countries and our own times.
+				So: thank you, Nicky, for the generosity and the genius.
+				<a href="https://ncase.me/">Go and explore the rest of Nicky's work</a> &mdash; it's wonderful.
+				</p>
+
+				<div class="appendix_title" style="font-size:30px; line-height:40px; margin-top:30px;">ON THE SHOULDERS OF GIANTS</div>
+				<p>
+				The proportional methods here were inspired by
+				<a href="https://smartvotesim.com/">the Smart Voting Simulator</a> by Paretoman,
+				another remix of Nicky's original that dives deep into proportional representation.
+				And Nicky's original was itself inspired by
+				<a href="http://zesty.ca/voting/sim/">Ka-Ping Yee's voting visualisations</a> (2005)
+				and <a href="http://worrydream.com/LadderOfAbstraction/">Bret Victor's &ldquo;Ladder of Abstraction&rdquo;</a> (2011).
+				You can learn more about <a href="https://explorabl.es/">Explorable Explanations here</a>.
+				</p>
+
+				<div class="appendix_title" style="font-size:30px; line-height:40px; margin-top:30px;">&ldquo;BUT WHAT CAN <em>I</em> DO?&rdquo;</div>
+				<p>
+				<b>If you're in the UK</b> and this got you fired up, these folks campaign for fairer votes
+				(they don't always agree on which system is best, but they all want to fix the one we've got):
+				the <a href="https://www.electoral-reform.org.uk/">Electoral Reform Society</a>,
+				<a href="https://www.makevotesmatter.org.uk/">Make Votes Matter</a>, and
+				<a href="https://www.unlockdemocracy.org.uk/">Unlock Democracy</a>.
+				You can also just
+				<a href="https://www.parliament.uk/get-involved/contact-an-mp-or-lord/contact-your-mp/">write to your MP</a>
+				&mdash; they do read it.
+				</p>
+
+				<p>
+				<b>If you're a teacher:</b> this is public domain &mdash; use it freely in class.
+				<b>If you're a coder:</b> remix it. <b>If you're neither:</b> share it with someone who needs convincing.
+				</p>
+
+			</div>
+
+			<div id="supporters">
+				<div class="appendix_title" style="text-align:center; font-size: 30px; margin: 0 0 15px 0; line-height:1.2em;">
+				MADE IN BRITAIN,<br>STANDING ON NICKY'S</div>
+				<p style="text-align:center; color:#888;">
+				betterballot.uk &mdash; a public-domain remix.<br><br>
+				The maths of voting is universal.<br>
+				The examples here are British,<br>
+				and current as of 2026.<br><br>
+				Spotted a mistake, or have a better example?<br>
+				Brilliant &mdash; it's public domain, so go and fix it.
+				</p>
+			</div>
+		</div>
+
+	</div>
+	<div style="text-align:center; color:#fff;">
+	sharing is caring!
+	<ul class="share-buttons">
+		<li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbetterballot.uk%2F&t=To%20Build%20a%20Better%20Ballot%20(UK)" title="Share on Facebook" target="_blank"><img alt="Share on Facebook" src="social/Facebook.png"></a></li>
+		<li><a href="https://twitter.com/intent/tweet?source=https%3A%2F%2Fbetterballot.uk%2F&text=An%20interactive%20guide%20to%20fairer%20voting%20%26%20proportional%20representation%20in%20the%20UK%3A%20https%3A%2F%2Fbetterballot.uk%2F" target="_blank" title="Tweet"><img alt="Tweet" src="social/Twitter.png"></a></li>
+		<li><a href="mailto:?subject=To%20Build%20a%20Better%20Ballot%20(UK)&body=An%20interactive%20guide%20to%20fairer%20voting%20in%20the%20UK%3A%20https%3A%2F%2Fbetterballot.uk%2F" target="_blank" title="Send email"><img alt="Send email" src="social/Email.png"></a></li>
+	</ul>
+	</div>
+</div>
+
+</div>
+
+</body>
+<script src="js/index.js"></script>
+</html>
