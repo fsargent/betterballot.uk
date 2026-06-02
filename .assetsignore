@@ -7,12 +7,21 @@
 wrangler.toml
 package.json
 package-lock.json
+bun.lock
 node_modules
+test-results
+playwright-report
+playwright.config.ts
+tests
+tools
 
 # Repo tooling / docs (not part of the website)
 .claude
 .agents
 *.md
+
+# TypeScript sources are build inputs; generated browser JS lives in play/js.
+play/src
 
 # Separate embedded project and leftover empty dir
 voter

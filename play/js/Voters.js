@@ -301,7 +301,7 @@ var _drawSlices = function(ctx, x, y, size, slices, totalSlices){
 	var endingAngle = 0;
 	for(var i=0; i<slices.length; i++){
 
-		slice = slices[i];
+		var slice = slices[i];
 
 		// Angle!
 		var sliceAngle = slice.num * (Math.TAU/totalSlices);

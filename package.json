@@ -1,15 +1,22 @@
 {
   "name": "betterballot-uk",
   "version": "1.0.0",
+  "type": "module",
   "description": "To Build a Better Ballot — UK: an interactive guide to fairer voting & proportional representation. A public-domain remix of Nicky Case's original.",
   "private": true,
   "license": "CC0-1.0",
   "scripts": {
-    "start": "npx serve .",
+    "start": "bun tools/static-server.ts",
+    "build": "bun run build:core",
+    "build:core": "bun build play/src/election-core-browser.ts --target browser --format iife --outfile play/js/election-core.js",
+    "test": "bun run build:core && bun run test:unit && bun run test:browser",
+    "test:unit": "bun test tests/*.test.ts",
+    "test:browser": "playwright test",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "wrangler": "^4"
   }
 }
