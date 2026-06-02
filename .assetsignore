@@ -14,6 +14,7 @@ playwright-report
 playwright.config.ts
 tests
 tools
+src
 
 # Repo tooling / docs (not part of the website)
 .claude
@@ -22,6 +23,7 @@ tools
 
 # TypeScript sources are build inputs; generated browser JS lives in play/js.
 play/src
+splash/src
 
 # Separate embedded project and leftover empty dir
 voter

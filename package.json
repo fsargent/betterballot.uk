@@ -7,13 +7,13 @@
   "license": "CC0-1.0",
   "scripts": {
     "start": "bun tools/static-server.ts",
-    "build": "bun run build:core",
-    "build:core": "bun build play/src/election-core-browser.ts --target browser --format iife --outfile play/js/election-core.js",
-    "test": "bun run build:core && bun run test:unit && bun run test:browser",
+    "build": "bun tools/build-play-js.ts",
+    "build:core": "bun run build",
+    "test": "bun run build && bun run test:unit && bun run test:browser",
     "test:unit": "bun test tests/*.test.ts",
     "test:browser": "playwright test",
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "deploy": "bun run build && wrangler deploy"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",

@@ -13,6 +13,7 @@ declare global {
 }
 
 const demoPages = [
+	"/sandbox/sandbox.html",
 	"/play/election1.html",
 	"/play/election2.html",
 	"/play/election_pr.html",
@@ -75,5 +76,44 @@ test("sandbox save URL round-trips model data", async ({ page }) => {
 	const saved = await page.evaluate(() => window.save());
 	expect(saved.candidatePositions.length).toBeGreaterThan(0);
 	expect(saved.voterPositions.length).toBeGreaterThan(0);
+	expect(errors).toEqual([]);
+});
+
+test("home page loads its generated JavaScript", async ({ page }) => {
+	const errors: string[] = [];
+	page.on("pageerror", (error) => errors.push(error.message));
+	page.on("console", (message) => {
+		if (message.type() === "error") errors.push(message.text());
+	});
+
+	await page.goto("/");
+	await page.waitForLoadState("load");
+
+	await expect(page.locator("#splash_iframe")).toHaveCount(1);
+	await expect(page.locator("body")).toContainText("To Build a Better Ballot");
+	expect(errors).toEqual([]);
+});
+
+test("splash page loads its generated JavaScript", async ({ page }) => {
+	const errors: string[] = [];
+	page.on("pageerror", (error) => errors.push(error.message));
+	page.on("console", (message) => {
+		if (message.type() === "error") errors.push(message.text());
+	});
+
+	await page.goto("/splash/splash.html");
+	await page.waitForLoadState("load");
+	await expect(page.locator("canvas")).toHaveCount(1);
+	await page.waitForTimeout(100);
+
+	const hasPixels = await page.evaluate(() => {
+		const canvas = document.querySelector("canvas");
+		if (!canvas) return false;
+		const context = canvas.getContext("2d");
+		if (!context) return false;
+		return context.getImageData(0, 0, 10, 10).data.some((value) => value > 0);
+	});
+
+	expect(hasPixels).toBe(true);
 	expect(errors).toEqual([]);
 });

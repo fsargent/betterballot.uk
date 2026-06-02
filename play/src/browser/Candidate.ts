@@ -1,3 +1,4 @@
+// -nocheck
 function Candidate(config){
 
 	var self = this;
@@ -94,3 +95,5 @@ Candidate.graphics = {
 		fill: "hsl(30,80%,70%)"
 	}
 };
+
+globalThis.Candidate = Candidate;
