@@ -1,7 +1,7 @@
-import * as ElectionCore from "./election-core";
+import * as Core from "./election-core";
 
 declare global {
-	var ElectionCore: typeof ElectionCore;
+  var ElectionCore: typeof Core;
 }
 
-globalThis.ElectionCore = ElectionCore;
+globalThis.ElectionCore = Core;

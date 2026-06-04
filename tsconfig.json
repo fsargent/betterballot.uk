@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "allowImportingTsExtensions": true,
+    "checkJs": false,
+    "lib": ["DOM", "ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "target": "ES2022",
+    "types": ["bun"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "play/src/election-core.ts",
+    "play/src/election-core-browser.ts",
+    "tests/**/*.ts",
+    "tools/**/*.ts"
+  ]
+}

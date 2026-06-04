@@ -91,6 +91,9 @@ li {
   width: 800px;
   margin: 50px auto 40px auto;
 }
+#pr-choosemany {
+  width: 1020px;
+}
 #content p.quote {
   border-radius: 5px;
   background: #eee;

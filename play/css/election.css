@@ -12,6 +12,9 @@ Election/Sandbox design:
   float: left;
   height: 320px;
 }
+body {
+  overflow-x: hidden;
+}
 #left {
   width: 220px;
   padding-right: 20px;
@@ -22,6 +25,7 @@ Election/Sandbox design:
 #right {
   width: 220px;
   padding-left: 20px;
+  overflow-x: hidden;
   overflow-y: auto;
 }
 #caption {
@@ -135,6 +139,68 @@ Election/Sandbox design:
 #caption .seatbar span {
   display: block;
   height: 100%;
+}
+#caption .pl-seat-counts {
+  column-count: 2;
+  column-gap: 10px;
+  margin-top: 2px;
+}
+#caption .pl-seat-count {
+  break-inside: avoid;
+  line-height: 1.25em;
+  white-space: nowrap;
+}
+#caption .spav-round {
+  margin-bottom: 10px;
+}
+#caption .spav-scores {
+  margin-top: 4px;
+}
+#caption .spav-score-row {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) 44px;
+  gap: 4px;
+  align-items: center;
+  min-height: 18px;
+  box-sizing: border-box;
+}
+body.wide-results #caption .spav-score-row {
+  grid-template-columns: 22px minmax(0, 1fr) 58px;
+  gap: 6px;
+}
+body.wide-results #caption .spav-score-bar {
+  height: 10px;
+}
+body.wide-results #caption .spav-round {
+  margin-bottom: 12px;
+}
+#caption .spav-score-row.winning {
+  font-weight: bold;
+}
+#caption .spav-score-icon {
+  line-height: 1;
+}
+#caption .spav-score-bar {
+  display: block;
+  height: 8px;
+  background: #e1e1e1;
+  border-radius: 2px;
+  overflow: hidden;
+}
+#caption .spav-score-bar span {
+  display: block;
+  height: 100%;
+}
+#caption .spav-score-num {
+  text-align: right;
+  white-space: nowrap;
+}
+#caption .spav-note,
+#caption .spav-more {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.1em;
+  margin-top: 3px;
 }
 
 /* Coloured dot / SVG shape for generated candidates (instead of a hand-drawn icon) */
