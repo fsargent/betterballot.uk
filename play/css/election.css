@@ -108,6 +108,10 @@ body {
 
 /* Row of seats won (results), shown above the round-by-round count */
 #caption .seats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3px;
   margin: 6px 0 12px 0;
   padding-bottom: 12px;
   border-bottom: 2px solid #ddd;
@@ -117,13 +121,13 @@ body {
   height: 30px;
   width: 30px;
   top: 0;
-  margin: 1px;
+  margin: 0;
 }
 #caption .seats .cdot,
 #caption .seats .cicon {
-  width: 26px;
-  height: 26px;
-  margin: 2px;
+  width: 30px;
+  height: 30px;
+  margin: 0;
 }
 
 /* Proportional seat bar (Party List) */
@@ -135,6 +139,13 @@ body {
   border-radius: 4px;
   overflow: hidden;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+#caption .seats .seatbar {
+  flex-basis: 100%;
+  margin: 5px 0 0 0;
+}
+#caption .partylist-result .seatbar:first-child {
+  margin-top: 0;
 }
 #caption .seatbar span {
   display: block;
@@ -201,6 +212,84 @@ body.wide-results #caption .spav-round {
   font-size: 13px;
   line-height: 1.1em;
   margin-top: 3px;
+}
+#caption .stv-sankey {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 2px solid #ddd;
+}
+#caption .stv-sankey-title {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+#caption .stv-flow-step {
+  display: grid;
+  grid-template-columns: 112px 170px 86px;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+#caption .stv-flow-from {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 5px;
+  align-items: center;
+  color: #555;
+  font-size: 12px;
+  line-height: 1.05em;
+}
+#caption .stv-flow-from img,
+#caption .stv-flow-from .cicon {
+  width: 22px;
+  height: 22px;
+}
+#caption .stv-flow-svg {
+  display: block;
+  width: 170px;
+  overflow: visible;
+}
+#caption .stv-flow-svg path {
+  fill: none;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+#caption .stv-flow-to {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+}
+#caption .stv-flow-target {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 5px;
+  align-items: center;
+  min-height: 20px;
+  font-size: 13px;
+}
+#caption .stv-flow-target img,
+#caption .stv-flow-target .cicon {
+  width: 20px;
+  height: 20px;
+}
+#caption .stv-seat,
+#caption .stv-exhausted {
+  display: inline-flex;
+  width: 22px;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  color: #fff;
+  background: #999;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 1;
+}
+#caption .stv-exhausted {
+  background: #bbb;
+  color: #555;
 }
 
 /* Coloured dot / SVG shape for generated candidates (instead of a hand-drawn icon) */

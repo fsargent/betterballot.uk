@@ -180,7 +180,8 @@
       let bestId = null;
       let bestQuotient = -Infinity;
       for (const id of candidateIds) {
-        const quotient = tally[id] / (2 * seatsWon[id] + 1);
+        const sainteLagueDivisor = 2 * seatsWon[id] + 1;
+        const quotient = tally[id] / sainteLagueDivisor;
         if (quotient > bestQuotient) {
           bestQuotient = quotient;
           bestId = id;
@@ -232,6 +233,7 @@
     const continuing = createTally(candidateIds, 1);
     const elected = [];
     const rounds = [];
+    const flows = [];
     const topContinuing = (ballot) => {
       for (const candidate of ballot.rank) {
         if (continuing[candidate]) return candidate;
@@ -248,6 +250,11 @@
       }
       return tally;
     };
+    const flowRows = (flow) =>
+      Object.keys(flow)
+        .map((to) => ({ to, value: flow[to] }))
+        .filter((transfer) => transfer.value > 0.0001)
+        .sort((a, b) => b.value - a.value);
     let guard = 0;
     while (elected.length < seats && guard < 200) {
       guard++;
@@ -272,13 +279,31 @@
       if (topVotes >= quota) {
         const surplus = topVotes - quota;
         const transferValue = surplus / topVotes;
+        const flow = {
+          elected: Math.min(quota, topVotes),
+          exhausted: 0,
+        };
+        for (const candidate of candidateIds) flow[candidate] = 0;
+        continuing[topId] = 0;
         for (const ballot of weightedBallots) {
-          if (topContinuing(ballot) === topId) {
-            ballot.weight *= transferValue;
+          if (ballot.rank.indexOf(topId) >= 0) {
+            const hadTop = ballot.rank.find(
+              (candidate) => continuing[candidate] || candidate === topId,
+            );
+            if (hadTop === topId) {
+              ballot.weight *= transferValue;
+              const target = topContinuing(ballot);
+              flow[target === null ? "exhausted" : target] += ballot.weight;
+            }
           }
         }
-        continuing[topId] = 0;
         elected.push(topId);
+        flows.push({
+          action: "elected",
+          from: topId,
+          votes: topVotes,
+          transfers: flowRows(flow),
+        });
         rounds.push({
           action: "elected",
           candidate: topId,
@@ -290,7 +315,25 @@
           Object.fromEntries(continuingIds.map((id) => [id, tally[id]])),
         );
         if (lowId === null) break;
+        const flow = {
+          elected: 0,
+          exhausted: 0,
+        };
+        for (const candidate of candidateIds) flow[candidate] = 0;
+        const movingBallots = weightedBallots.filter(
+          (ballot) => topContinuing(ballot) === lowId,
+        );
         continuing[lowId] = 0;
+        for (const ballot of movingBallots) {
+          const target = topContinuing(ballot);
+          flow[target === null ? "exhausted" : target] += ballot.weight;
+        }
+        flows.push({
+          action: "eliminated",
+          from: lowId,
+          votes: tally[lowId],
+          transfers: flowRows(flow),
+        });
         rounds.push({
           action: "eliminated",
           candidate: lowId,
@@ -298,7 +341,7 @@
         });
       }
     }
-    return { quota, elected, rounds };
+    return { quota, elected, rounds, flows };
   };
 
   // play/src/election-core-browser.ts

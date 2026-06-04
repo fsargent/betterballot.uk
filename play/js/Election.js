@@ -282,6 +282,89 @@
     text += "</div>";
     return text;
   };
+  var _stvFlowLabel = function (flow) {
+    if (flow.action == "elected") {
+      return "keeps a quota; surplus transfers";
+    }
+    return "eliminated; votes transfer";
+  };
+  var _stvTarget = function (from, transfer) {
+    if (transfer.to == "elected") {
+      return {
+        icon: "<span class='stv-seat'>seat</span>",
+        color: Candidate.graphics[from].fill,
+      };
+    }
+    if (transfer.to == "exhausted") {
+      return {
+        icon: "<span class='stv-exhausted'>none</span>",
+        color: "#bbb",
+      };
+    }
+    return {
+      icon: _icon(transfer.to),
+      color: Candidate.graphics[transfer.to].fill,
+    };
+  };
+  var _stvSankey = function (result) {
+    var flows = result.flows || [];
+    if (!flows.length) return "";
+    var text = "<div class='stv-sankey'>";
+    text += "<div class='stv-sankey-title'>how votes move</div>";
+    for (var i = 0; i < flows.length; i++) {
+      var flow = flows[i];
+      var transfers = flow.transfers || [];
+      var height = Math.max(42, transfers.length * 24);
+      var maxValue = Math.max(flow.votes || 1, result.quota || 1);
+      var mid = height / 2;
+      text += "<div class='stv-flow-step'>";
+      text +=
+        "<div class='stv-flow-from'>" +
+        _icon(flow.from) +
+        "<span>" +
+        _stvFlowLabel(flow) +
+        "</span></div>";
+      text +=
+        "<svg class='stv-flow-svg' viewBox='0 0 180 " +
+        height +
+        "' aria-hidden='true'>";
+      for (var j = 0; j < transfers.length; j++) {
+        var transfer = transfers[j];
+        var target = _stvTarget(flow.from, transfer);
+        var y = transfers.length == 1 ? mid : 12 + j * 24;
+        var width = Math.max(2, Math.min(18, (transfer.value / maxValue) * 18));
+        text +=
+          "<path d='M 8 " +
+          mid.toFixed(1) +
+          " C 64 " +
+          mid.toFixed(1) +
+          ", 112 " +
+          y.toFixed(1) +
+          ", 172 " +
+          y.toFixed(1) +
+          "' stroke='" +
+          target.color +
+          "' stroke-width='" +
+          width.toFixed(1) +
+          "'/>";
+      }
+      text += "</svg>";
+      text += "<div class='stv-flow-to' style='min-height:" + height + "px'>";
+      for (var k = 0; k < transfers.length; k++) {
+        var row = transfers[k];
+        var rowTarget = _stvTarget(flow.from, row);
+        text +=
+          "<div class='stv-flow-target'>" +
+          rowTarget.icon +
+          "<b>" +
+          row.value.toFixed(row.value >= 10 ? 0 : 1) +
+          "</b></div>";
+      }
+      text += "</div></div>";
+    }
+    text += "</div>";
+    return text;
+  };
   Election.partylist = function (model, options) {
     var seats = _seats(model, options);
     _neutralBorder(model);
@@ -296,9 +379,14 @@
     var place = seats >= 50 ? "parliament" : "constituency";
     var text = "";
     text += "<b>" + (seats >= 50 ? "seats:" : "elected:") + "</b>";
+    text += "<div class='seats partylist-result'>";
     if (seats < 50) {
-      text += _seatRow(seatWinners);
+      for (var s = 0; s < seatWinners.length; s++) {
+        text += _icon(seatWinners[s]);
+      }
     }
+    text += _seatBar(model, seatsWon, seats);
+    text += "</div>";
     text += "<div class='small'>";
     text += "<b>seats shared out in proportion to each party's votes</b><br>";
     text += "(a " + seats + "-seat " + place + ")<br><br>";
@@ -322,7 +410,6 @@
       text += "</div>";
     }
     text += "</div>";
-    text += _seatBar(model, seatsWon, seats);
     model.caption.innerHTML = text;
   };
   Election.spav = function (model, options) {
@@ -361,26 +448,12 @@
     );
     var quota = result.quota;
     var elected = result.elected;
-    var text = "<span class='small'>";
-    text += "<b>quota to win a seat: " + quota + "</b><br><br>";
-    for (var i = 0; i < result.rounds.length; i++) {
-      var round = result.rounds[i];
-      if (round.action == "last-seats") {
-        for (var j = 0; j < round.candidates.length; j++) {
-          text += _icon(round.candidates[j]) + " elected (last seats)<br>";
-        }
-      } else if (round.action == "elected") {
-        text +=
-          _icon(round.candidate) +
-          " reaches quota &rarr; elected (" +
-          round.votes.toFixed(0) +
-          ")<br>";
-      } else {
-        text += _icon(round.candidate) + " eliminated, votes transfer<br>";
-      }
-    }
-    text += "</span>";
+    var text = "<b>elected:</b>";
     text += _seatRow(elected);
+    text += "<span class='small'>";
+    text += "<b>quota to win a seat: " + quota + "</b>";
+    text += "</span>";
+    text += _stvSankey(result);
     model.caption.innerHTML = text;
   };
   globalThis.Election = Election;

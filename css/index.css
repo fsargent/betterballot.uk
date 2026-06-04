@@ -94,6 +94,12 @@ li {
 #pr-choosemany {
   width: 1020px;
 }
+#pr-stv {
+  width: 1020px;
+}
+#pr-compare {
+  width: 1020px;
+}
 #content p.quote {
   border-radius: 5px;
   background: #eee;

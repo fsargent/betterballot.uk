@@ -149,6 +149,48 @@ test("proportional demos do not create horizontal overflow", async ({
     chooseManyOverflow.clientWidth,
   );
 
+  const stvFrame = page.frameLocator("#pr-stv iframe");
+  await expect(stvFrame.locator("#caption")).toContainText("elected:");
+  await expect(stvFrame.locator("#caption")).toContainText(
+    "quota to win a seat",
+  );
+  await expect(stvFrame.locator("#caption")).toContainText("how votes move");
+  await expect(stvFrame.locator(".stv-sankey")).toHaveCount(1);
+  const stvOverflow = await stvFrame.locator("#right").evaluate((right) => ({
+    clientWidth: right.clientWidth,
+    scrollWidth: right.scrollWidth,
+  }));
+  expect(stvOverflow.scrollWidth).toBeLessThanOrEqual(stvOverflow.clientWidth);
+
+  const compareFrame = page.frameLocator("#pr-compare iframe");
+  await expect(compareFrame.locator("#caption")).toContainText(
+    "seats shared out",
+  );
+  await expect(compareFrame.locator(".partylist-result .seatbar")).toHaveCount(
+    1,
+  );
+  const compareOrder = await compareFrame
+    .locator("#caption")
+    .evaluate((caption) => {
+      const seatbar = caption.querySelector(".partylist-result .seatbar");
+      const small = caption.querySelector(".small");
+      if (!seatbar || !small) return false;
+      return Boolean(
+        seatbar.compareDocumentPosition(small) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+      );
+    });
+  expect(compareOrder).toBe(true);
+  const compareOverflow = await compareFrame
+    .locator("#right")
+    .evaluate((right) => ({
+      clientWidth: right.clientWidth,
+      scrollWidth: right.scrollWidth,
+    }));
+  expect(compareOverflow.scrollWidth).toBeLessThanOrEqual(
+    compareOverflow.clientWidth,
+  );
+
   await page.goto("/play/pr_party.html");
   await page.waitForLoadState("load");
   await page.getByText("13", { exact: true }).click();
